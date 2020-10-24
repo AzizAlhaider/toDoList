@@ -7,12 +7,13 @@
 //
 
 import UIKit
-
+ var tasks = [String]()
 class ViewController: UIViewController {
 
+    
     @IBOutlet var tableView: UITableView!
     
-    var tasks = [String]()
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,14 @@ class ViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+//        let count = UserDefaults().value(forKey: "count") as? Int
+//
+//        let newCount = count! + 1
+//
+//               UserDefaults().set(newCount, forKey: "count")
+//
+//               UserDefaults().set(text, forKey: "task_\(newCount)")
+//
         if !UserDefaults().bool(forKey: "setup"){
             UserDefaults().set(true, forKey: "setup")
              UserDefaults().set(0, forKey: "count")
@@ -31,11 +40,7 @@ class ViewController: UIViewController {
         updateTasks()
     }
     
-    @IBAction func Add(_ sender: Any) {
-        
-        
-        
-    }
+  
     func updateTasks(){
         
         tasks.removeAll()
@@ -58,7 +63,7 @@ class ViewController: UIViewController {
     @IBAction func didTapAdd() {
         
         let vc = storyboard?.instantiateViewController(identifier: "entry") as! EntryViewController
-        vc.title = "new task"
+        vc.title = "اضافة مهام"
         vc.update = {
             DispatchQueue.main.async {
                  self.updateTasks()

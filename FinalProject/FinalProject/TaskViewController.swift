@@ -14,26 +14,54 @@ class TaskViewController: UIViewController {
     
     var task: String?
     
-    
-    
     override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        lable.text = task
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "حذف", style: .done, target: self, action: #selector(deleteTask))
-    }
+    super.viewDidLoad()
     
-    @objc func deleteTask(){
-        
-        
-        
-//        let newCount = count - 1
-//        
-//        
-//        UserDefaults().setValue(newCount, forKey: "count")
-//        UserDefaults().setValue(nil, forKey: "task\(currentPosition)")
+    lable.text = task
 
     }
+   
+        
+    
+   
+      
+    @IBAction func d(_ sender: UIButton) {
+        let count = UserDefaults().value(forKey: "count") as? Int
+        let newCounter = count! - 1
+        
+        UserDefaults().setValue(newCounter, forKey: "count")
+        UserDefaults().setValue(nil, forKey: "task_\(count!-1)")
+
+        UserDefaults.standard.removeObject(forKey: "task_\(count!-1)")
+        navigationController?.popViewController(animated: true)
+    }
+    
 
     
+    
+    
+
+    
+    
+    
+    
+           
+        
+
+
+
+
+       
+
+
+
+
+
+    
+
+    
+
+
+
+
 }
